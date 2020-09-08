@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: nginx
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  tls:
+  - hosts:
+    - 248274b5-bcc6-41e9-a63f-926c18d665c4.nodes.k8s.fr-par.scw.cloud
+    secretName: nginx
+  rules:
+  - host: 248274b5-bcc6-41e9-a63f-926c18d665c4.nodes.k8s.fr-par.scw.cloud
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: nginx
+          servicePort: 80
